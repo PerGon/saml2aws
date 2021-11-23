@@ -113,6 +113,7 @@ func main() {
 	cmdLogin.Flag("cache-file", "The location of the SAML cache file (env: SAML2AWS_SAML_CACHE_FILE)").Envar("SAML2AWS_SAML_CACHE_FILE").StringVar(&commonFlags.SAMLCacheFile)
 	cmdLogin.Flag("disable-sessions", "Do not use Okta sessions. Uses Okta sessions by default. (env: SAML2AWS_OKTA_DISABLE_SESSIONS)").Envar("SAML2AWS_OKTA_DISABLE_SESSIONS").BoolVar(&commonFlags.DisableSessions)
 	cmdLogin.Flag("disable-remember-device", "Do not remember Okta MFA device. Remembers MFA device by default. (env: SAML2AWS_OKTA_DISABLE_REMEMBER_DEVICE)").Envar("SAML2AWS_OKTA_DISABLE_REMEMBER_DEVICE").BoolVar(&commonFlags.DisableRememberDevice)
+	cmdLogin.Flag("mfa-full-name", "zzz").Envar("SAML2AWS_OKTA_MFA_FULL_NAME").StringVar(&loginFlags.MFAFullName)
 
 	// `exec` command and settings
 	cmdExec := app.Command("exec", "Exec the supplied command with env vars from STS token.")

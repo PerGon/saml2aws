@@ -11,4 +11,5 @@ type LoginDetails struct {
 	URL               string
 	StateToken        string // used by Okta
 	OktaSessionCookie string // used by Okta
+	MFAFullName       string // used by Okta
 }

@@ -754,9 +754,15 @@ func verifyMfa(oc *Client, oktaOrgHost string, loginDetails *creds.LoginDetails,
 		}
 		// If multiple MFA of the same type are found, we prompt the user to pick which one to use
 		if len(mfaOptionsMatches) > 1 {
-			matchOptionIndex := prompter.Choose(fmt.Sprintf("Multiple %s MFA options found. Select which MFA option to use", oc.mfa), mfaOptionsMatches)
+			choosenOption := ""
+			if len(loginDetails.MFAFullName) > 1 {
+				choosenOption = loginDetails.MFAFullName
+			} else {
+				matchOptionIndex := prompter.Choose(fmt.Sprintf("Multiple %s MFA options found. Select which MFA option to use", oc.mfa), mfaOptionsMatches)
+				choosenOption = mfaOptionsMatches[matchOptionIndex]
+			}
 			for i := range mfaOptions {
-				if mfaOptions[i] == mfaOptionsMatches[matchOptionIndex] {
+				if mfaOptions[i] == choosenOption {
 					mfaOption = i
 				}
 			}
